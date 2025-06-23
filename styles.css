@@ -1,0 +1,1828 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('pic\\Scr.jpg');
+    background-color: #737373;
+    background-position: center;
+}
+
+header {
+    color: white;
+    padding: 15px 0;
+    font-size: 32px;
+    text-align: center;
+}
+
+.nav-bar {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+    gap: 15px;
+}
+
+.language-container {
+    position: relative;
+    display: inline-block;
+}
+
+/* 修復語言按鈕樣式 - 移除錯誤的 "z" 選擇器 */
+#languageBtn {
+    position: relative;
+    cursor: pointer;
+    z-index: 999;
+}
+
+/* 確保語言按鈕的下拉箭頭 */
+#languageBtn::after {
+    content: " ▼";
+    font-size: 12px;
+    margin-left: 5px;
+    transition: transform 0.3s ease;
+}
+
+#languageBtn.active::after {
+    transform: rotate(180deg);
+}
+
+.nav-bar .button {
+    margin: 0 15px;
+    padding: 10px 25px;
+    font-size: 20px;
+    color: white;
+    background-color: #689fb5;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.nav-bar .button:hover {
+    background-color: #355074;
+}
+
+.button {
+    margin: 0 15px;
+    padding: 10px 25px;
+    font-size: 20px;
+    color: white;
+    background-color: #689fb5;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #355074;
+}
+
+.container_front {
+    margin: 30px auto;
+    padding: 25px;
+    max-width: 800px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.container {
+    margin: 30px auto;
+    padding: 25px;
+    max-width: 1300px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+
+
+.landmark-container {
+    max-width: 1300px !important;
+
+    width: 90% !important;
+    margin: 30px auto !important;
+    padding: 25px !important;
+    background: rgba(255, 255, 255, 0.8) !important;
+    border-radius: 15px !important;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1) !important;
+    text-align: center !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+}
+
+
+.hidden {
+    display: none;
+}
+
+.action-buttons .button {
+    display: block;
+    margin: 15px auto;
+    padding: 15px 25px;
+    font-size: 20px;
+    color: white;
+    background-color: #689fb5;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.action-buttons .button:hover {
+    background-color: #355074;
+}
+
+#fileInput {
+    display: none;
+}
+
+/* 照片預覽樣式 */
+.photo-preview-container {
+    margin: 0 auto 20px auto;
+    max-width: 90%;
+    position: relative;
+    width: 90%;
+}
+
+#photoPreview {
+    width: 100%;
+    max-height: 70vh;
+    object-fit: contain;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#photoPreview:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.photo-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(104, 159, 181, 0) 70%, rgba(104, 159, 181, 0.7) 100%);
+    border-radius: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+#photoPreview:hover+.photo-overlay {
+    opacity: 1;
+}
+
+/* 地標頁面特殊處理 */
+#landmarkScreen.container {
+    max-width: none !important;
+    padding: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+}
+
+.landmark-hero-section {
+    position: relative;
+    width: 100%;
+    height: 50vh;
+    min-height: 300px;
+    max-height: 500px;
+    overflow: hidden;
+    border-radius: 15px 15px 0 0;
+}
+
+.landmark-hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.landmark-hero-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top,
+            rgba(0, 0, 0, 0.8) 0%,
+            rgba(0, 0, 0, 0.4) 50%,
+            rgba(0, 0, 0, 0) 100%);
+    color: white;
+    padding: 40px 30px 30px;
+    text-align: center;
+}
+
+.landmark-hero-name-zh {
+    font-size: 42px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    letter-spacing: 2px;
+}
+
+.landmark-hero-name-en {
+    font-size: 24px;
+    font-weight: 300;
+    color: #f0f0f0;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    letter-spacing: 1px;
+}
+
+.landmark-details-section {
+    padding: 30px 25px;
+    background: white;
+}
+
+.landmark-section {
+    padding: 25px 30px;
+    /* 增加左右內邊距 */
+    background: white;
+}
+
+.landmark-section h3 {
+    font-size: 24px;
+    color: #355074;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #689fb5;
+}
+
+.landmark-description {
+    font-size: 22px;
+    line-height: 1.8;
+    color: #333;
+    text-align: justify;
+    font-family: 'Microsoft JhengHei', '微軟黑體', 'Microsoft YaHei', sans-serif;
+    font-weight: 400;
+}
+
+.back-button-container {
+    text-align: center;
+    padding: 20px 0 40px;
+    background: white;
+    border-radius: 0 0 15px 15px;
+}
+
+.back-button-container .button {
+    background-color: #689fb5;
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 25px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.back-button-container .button:hover {
+    background-color: #355074;
+}
+
+/* 語言下拉選單樣式 */
+#languageDropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    min-width: 120px;
+    overflow: hidden;
+    margin-top: 2px;
+    display: none;
+    /* 預設隱藏 */
+}
+
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    min-width: 120px;
+    display: none;
+    overflow: hidden;
+    margin-top: 2px;
+}
+
+.dropdown-menu.show {
+    display: block;
+    animation: dropdownFadeIn 0.2s ease-out;
+}
+
+
+.lang-option {
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    font-size: 14px;
+    color: #333;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.lang-option:last-child {
+    border-bottom: none;
+}
+
+.lang-option:hover {
+    background-color: #f8f9fa;
+    color: #689fb5;
+}
+
+.lang-option.active {
+    background-color: #689fb5;
+    color: white;
+    font-weight: 500;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    .nav-bar {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .language-container {
+        position: relative;
+    }
+
+    #languageDropdown,
+    .dropdown-menu {
+        min-width: 100px;
+        left: 0;
+        right: auto;
+    }
+}
+
+
+@media (max-width: 480px) {
+    .language-container {
+        position: relative;
+    }
+
+    #languageDropdown,
+    .dropdown-menu {
+        min-width: 100px;
+        left: 0;
+        right: auto;
+    }
+}
+
+/* 載入指示器樣式 */
+.loader-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.loader-container.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.loader {
+    width: 80px;
+    height: 80px;
+    border: 5px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top: 5px solid #689fb5;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 頁面淡入動畫 */
+.page-fade-in {
+    animation: pageFadeIn 0.8s ease-out forwards;
+}
+
+@keyframes pageFadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* 附近地點可折疊樣式 */
+.nearby-place {
+    margin-bottom: 10px;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+}
+
+.nearby-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.nearby-header:hover {
+    background-color: #e0e0e0;
+}
+
+.nearby-header h4 {
+    margin: 0;
+    font-size: 16px;
+    color: #355074;
+}
+
+.nearby-toggle {
+    width: 20px;
+    height: 20px;
+    position: relative;
+}
+
+.nearby-toggle:before,
+.nearby-toggle:after {
+    content: '';
+    position: absolute;
+    background-color: #689fb5;
+    transition: transform 0.3s ease;
+}
+
+.nearby-toggle:before {
+    top: 9px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+}
+
+.nearby-toggle:after {
+    top: 0;
+    left: 9px;
+    width: 2px;
+    height: 100%;
+}
+
+.nearby-place.active .nearby-toggle:after {
+    transform: rotate(90deg);
+    opacity: 0;
+}
+
+.nearby-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    padding: 0 15px;
+}
+
+.nearby-place.active .nearby-content {
+    max-height: none !important;
+    /* 移除高度限制 */
+    height: auto !important;
+    /* 自動高度 */
+    padding: 20px !important;
+    overflow: visible !important;
+    /* 確保內容可見 */
+}
+
+.place-item .nearby-header {
+    background-color: rgba(104, 159, 181, 0.1);
+}
+
+.place-item .nearby-header:hover {
+    background-color: rgba(104, 159, 181, 0.2);
+}
+
+.place-item .nearby-header h4 {
+    color: #689fb5;
+    font-weight: bold;
+}
+
+.place-item .nearby-toggle:before,
+.place-item .nearby-toggle:after {
+    background-color: #689fb5;
+}
+
+.place-badge {
+    background-color: #689fb5;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12px;
+    margin-left: 8px;
+    font-weight: normal;
+}
+
+.address-link {
+    color: #689fb5;
+    cursor: pointer;
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+
+.address-link:hover {
+    color: #355074;
+    font-weight: bold;
+}
+
+.notification {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    z-index: 2000;
+    text-align: center;
+    max-width: 80%;
+    animation: notificationFadeIn 0.3s ease;
+}
+
+.notification-header {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #355074;
+}
+
+.notification-content {
+    margin-bottom: 20px;
+}
+
+.notification-close {
+    display: block;
+    margin: 0 auto;
+    padding: 8px 20px;
+    background-color: #689fb5;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.notification-close:hover {
+    background-color: #355074;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1999;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes notificationFadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.landmark-image {
+    width: 100%;
+    max-width: 550px;
+    /* 增加圖片最大寬度 */
+    height: 550px;
+    /* 增加圖片高度 */
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+.landmark-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+
+@media (max-width: 600px) {
+    .landmark-content {
+        flex-direction: column;
+    }
+
+    .landmark-image-container {
+        max-width: 100%;
+        margin-bottom: 20px;
+    }
+}
+
+.fixed-scroll-buttons {
+    position: fixed;
+    right: 30px;
+    bottom: 50px;
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 999;
+}
+
+.fixed-scroll-buttons.show {
+    display: flex;
+}
+
+.scroll-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgba(104, 159, 181, 0.8);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.scroll-btn:hover {
+    background-color: rgba(53, 80, 116, 0.9);
+    transform: scale(1.1);
+}
+
+.fixed-scroll-buttons .arrow {
+    font-size: 24px;
+    line-height: 1;
+}
+
+/* 距離篩選樣式 */
+.distance-filter-container {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f0f8ff;
+    border-radius: 8px;
+    border: 1px solid #d0e7ff;
+    transition: all 0.3s ease;
+}
+
+.distance-filter-container.sliding {
+    background-color: #e8f4f8;
+    border-color: #b8d4e3;
+    box-shadow: 0 2px 8px rgba(104, 159, 181, 0.2);
+}
+
+.distance-slider {
+    width: 100%;
+    height: 6px;
+    border-radius: 3px;
+    background: linear-gradient(to right, #689fb5 0%, #a0c4d0 100%);
+    outline: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.distance-slider:active {
+    height: 8px;
+    margin-top: -1px;
+}
+
+.distance-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #689fb5;
+    border: 3px solid white;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.distance-slider:active::-webkit-slider-thumb {
+    width: 24px;
+    height: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transform: scale(1.1);
+}
+
+.distance-slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #689fb5;
+    border: 3px solid white;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.distance-marks {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+    font-size: 12px;
+    color: #666;
+}
+
+.walking-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: rgba(104, 159, 181, 0.1);
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.walking-time,
+.walking-distance {
+    color: #555;
+    font-weight: 750;
+    font-size: 20px;
+}
+
+.walking-time::before {
+    content: "🚶‍♂️ ";
+}
+
+.walking-distance::before {
+    content: "👣 ";
+}
+
+/* 建築類型篩選樣式 */
+.building-type-filter {
+    margin-top: 15px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+}
+
+.building-type-filter h4 {
+    margin: 0 0 12px 0;
+    font-size: 16px;
+    color: #355074;
+    font-weight: 600;
+}
+
+.type-filter-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.type-filter-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 12px;
+    background-color: #e9ecef;
+    border: 2px solid #e9ecef;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    color: #495057;
+    user-select: none;
+}
+
+.type-filter-tag:hover {
+    background-color: #d1ecf1;
+    border-color: #bee5eb;
+    transform: translateY(-1px);
+}
+
+.type-filter-tag.active {
+    background-color: #689fb5;
+    border-color: #689fb5;
+    color: white;
+    font-weight: 500;
+}
+
+.type-filter-tag.active:hover {
+    background-color: #355074;
+    border-color: #355074;
+}
+
+.type-filter-tag::before {
+    content: "🏢 ";
+    margin-right: 4px;
+}
+
+.building-type-tag-small {
+    background-color: #6c757d;
+    color: white;
+}
+
+.building-type-tag-small[data-type*="Famous"],
+.building-type-tag-small[data-type*="知名景點"] {
+    background-color: #dc3545;
+}
+
+.building-type-tag-small[data-type*="Night Market"],
+.building-type-tag-small[data-type*="夜市"] {
+    background-color: #20c997;
+}
+
+.building-type-tag-small[data-type*="Temple"],
+.building-type-tag-small[data-type*="寺廟"] {
+    background-color: #ffc107;
+    color: #333;
+}
+
+.building-type-tag-small[data-type*="Park"],
+.building-type-tag-small[data-type*="公園"] {
+    background-color: #28a745;
+}
+
+.building-type-tag-small[data-type*="Museum"],
+.building-type-tag-small[data-type*="博物館"] {
+    background-color: #6f42c1;
+}
+
+.building-type-tag-small[data-type*="Station"],
+.building-type-tag-small[data-type*="車站"] {
+    background-color: #007bff;
+}
+
+.building-type-tag-small[data-type*="School"],
+.building-type-tag-small[data-type*="學校"] {
+    background-color: #fd7e14;
+}
+
+.building-type-tag-small[data-type*="Food"],
+.building-type-tag-small[data-type*="美食"],
+.building-type-tag-small[data-type*="食物"] {
+    background-color: #20c997;
+}
+
+/* 附近地點標題居中樣式 */
+.nearby-header-centered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+.nearby-header-centered h3 {
+    margin: 0;
+    font-size: 22px;
+    color: #355074;
+    text-align: center;
+}
+
+/* 篩選按鈕樣式 */
+.filter-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background-color: #689fb5;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    min-width: 100px;
+    justify-content: center;
+}
+
+.filter-btn:hover {
+    background-color: #355074;
+    transform: translateY(-2px);
+}
+
+.filter-icon {
+    font-size: 12px;
+    transition: transform 0.3s ease;
+}
+
+.filter-btn:hover .filter-icon {
+    transform: rotate(180deg);
+}
+
+/* 篩選彈出框樣式 */
+.filter-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.filter-modal {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 90%;
+    max-height: 80vh;
+    overflow: hidden;
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px) scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.filter-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+    background-color: #f8f9fa;
+}
+
+.filter-modal-header h4 {
+    margin: 0;
+    color: #355074;
+    font-size: 18px;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #666;
+    padding: 5px;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.close-btn:hover {
+    background-color: #e9ecef;
+    color: #333;
+}
+
+.filter-modal-content {
+    padding: 20px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.filter-option {
+    display: flex;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.filter-option:last-child {
+    border-bottom: none;
+}
+
+.filter-option:hover {
+    background-color: #f8f9fa;
+    border-radius: 6px;
+    margin: 0 -8px;
+    padding: 12px 8px;
+}
+
+.filter-option input[type="radio"],
+.filter-option input[type="checkbox"] {
+    margin-right: 12px;
+    cursor: pointer;
+    transform: scale(1.2);
+}
+
+.filter-option input[type="checkbox"]:checked {
+    accent-color: #689fb5;
+}
+
+.filter-option label {
+    cursor: pointer;
+    font-size: 15px;
+    color: #333;
+    flex: 1;
+    user-select: none;
+}
+
+.filter-modal-footer {
+    padding: 20px;
+    border-top: 1px solid #eee;
+    background-color: #f8f9fa;
+}
+
+.apply-filter-btn {
+    width: 100%;
+    background-color: #689fb5;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.apply-filter-btn:hover {
+    background-color: #355074;
+}
+
+.filter-section {
+    margin-bottom: 20px;
+}
+
+.filter-section:last-child {
+    margin-bottom: 0;
+}
+
+.filter-section-title {
+    margin: 0 0 12px 0;
+    font-size: 16px;
+    font-weight: bold;
+    color: #355074;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 8px;
+}
+
+/* 篩選按鈕狀態指示 */
+.filter-btn.multiple-selected {
+    background-color: #e74c3c;
+}
+
+.filter-btn.multiple-selected:hover {
+    background-color: #c0392b;
+}
+
+/* 最終響應式設計調整 */
+@media (max-width: 480px) {
+    .distance-filter-container {
+        padding: 12px;
+    }
+
+    .walking-info {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+    }
+
+    .distance-filter-header {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+    }
+
+    .walking-time,
+    .walking-distance {
+        font-size: 16px;
+    }
+
+    .type-filter-options {
+        gap: 6px;
+    }
+
+    .type-filter-tag {
+        padding: 5px 10px;
+        font-size: 12px;
+    }
+
+    .building-type-filter {
+        padding: 12px;
+    }
+
+    .filter-modal {
+        width: 95%;
+        margin: 20px;
+    }
+
+    .nearby-header-centered {
+        margin-bottom: 15px;
+    }
+
+    .filter-btn {
+        padding: 8px 16px;
+        font-size: 13px;
+    }
+}
+
+.map-container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+#mapTitle {
+    font-size: 28px;
+    color: #355074;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+#mapDescription {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.map-content {
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    padding: 40px 20px;
+    margin: 20px 0;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.map-placeholder {
+    text-align: center;
+    color: #666;
+}
+
+.map-placeholder h3 {
+    font-size: 24px;
+    color: #689fb5;
+    margin-bottom: 15px;
+}
+
+.map-placeholder p {
+    font-size: 16px;
+    color: #888;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    .map-container {
+        margin: 10px;
+        padding: 15px;
+    }
+
+    #mapTitle {
+        font-size: 24px;
+    }
+
+    .map-content {
+        padding: 30px 15px;
+        min-height: 300px;
+    }
+
+    .map-placeholder h3 {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .map-container {
+        margin: 5px;
+        padding: 10px;
+    }
+
+    #mapTitle {
+        font-size: 20px;
+    }
+
+    .map-content {
+        padding: 20px 10px;
+        min-height: 250px;
+    }
+
+    .map-placeholder h3 {
+        font-size: 18px;
+    }
+
+    .map-placeholder p {
+        font-size: 14px;
+    }
+}
+
+
+
+
+.landmark-header {
+    background: linear-gradient(135deg, #689fb5 0%, #355074 100%);
+    color: white;
+    padding: 25px;
+    margin: -25px -25px 25px -25px;
+    /* 負邊距來延伸到容器邊緣 */
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 15px 15px 0 0;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.landmark-section {
+    padding: 0;
+    /* 移除額外內邊距，使用容器的內邊距 */
+    background: transparent;
+}
+
+.landmark-section h3 {
+    font-size: 20px;
+    color: #355074;
+    margin: 0 0 20px 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #689fb5;
+    text-align: center;
+}
+
+/* 景點項目樣式 - 與辨識頁面一致 */
+.nearby-place {
+    margin-bottom: 15px;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+
+.nearby-place:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+.nearby-header {
+    padding: 12px 15px;
+}
+
+.nearby-header:hover {
+    background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
+}
+
+.nearby-header h4 {
+    font-size: 16px;
+}
+
+.nearby-toggle {
+    width: 24px;
+    height: 24px;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.nearby-toggle:before,
+.nearby-toggle:after {
+    content: '';
+    position: absolute;
+    background-color: #689fb5;
+    transition: all 0.3s ease;
+    border-radius: 1px;
+}
+
+.nearby-toggle:before {
+    top: 11px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+}
+
+.nearby-toggle:after {
+    top: 0;
+    left: 11px;
+    width: 2px;
+    height: 100%;
+}
+
+.nearby-place.active .nearby-content {
+    max-height: 500px;
+    padding: 15px;
+}
+
+
+.nearby-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    background: white;
+}
+
+.landmark-content {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    /* 增加間距 */
+    align-items: center;
+    padding: 20px 0;
+    /* 增加上下內邊距 */
+}
+
+.landmark-image {
+    width: 100%;
+    max-width: 320px;
+    /* 增加最大寬度讓圖片更顯眼 */
+    height: 220px;
+    /* 增加高度 */
+    object-fit: cover;
+    border-radius: 12px;
+    /* 增加圓角 */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.attraction-detail {
+    flex: 1;
+    text-align: left;
+    min-width: 0;
+    /* 確保文字能正常換行 */
+}
+
+.attraction-detail p {
+    margin: 10px 0;
+    /* 增加段落間距 */
+    color: #333;
+    line-height: 1.8;
+    /* 增加行高改善可讀性 */
+    font-size: 16px;
+    text-align: center;
+    /* 確保所有文字居中 */
+}
+
+
+/* 地標特殊樣式 */
+.landmark-item {
+    border-left: 4px solid #355074;
+}
+
+.landmark-item .nearby-header {
+    background-color: rgba(53, 80, 116, 0.1);
+}
+
+.landmark-item .nearby-header:hover {
+    background-color: rgba(53, 80, 116, 0.2);
+}
+
+/* 3. 刪除第721-724行的重複 .landmark-item .nearby-header h4 樣式 */
+.landmark-item .nearby-header h4 {
+    color: #355074;
+    font-weight: bold;
+}
+
+.landmark-item .nearby-toggle:before,
+.landmark-item .nearby-toggle:after {
+    background-color: #355074;
+}
+
+.landmark-badge {
+    background: linear-gradient(135deg, #355074 0%, #4a6b8a 100%);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 4px rgba(53, 80, 116, 0.3);
+}
+
+/* 一般地點樣式 */
+.place-item {
+    border-left: 4px solid #689fb5;
+}
+
+.place-item .nearby-header {
+    background: linear-gradient(135deg, rgba(104, 159, 181, 0.1) 0%, rgba(104, 159, 181, 0.05) 100%);
+}
+
+.place-item .nearby-header:hover {
+    background: linear-gradient(135deg, rgba(104, 159, 181, 0.15) 0%, rgba(104, 159, 181, 0.1) 100%);
+}
+
+.place-item .nearby-header h4 {
+    color: #689fb5;
+    font-weight: bold;
+}
+
+.place-item .nearby-toggle:before,
+.place-item .nearby-toggle:after {
+    background-color: #689fb5;
+}
+
+/* 建築類型標籤 */
+.building-type-tag-small {
+    padding: 3px 8px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 500;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    background-color: #6c757d;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.building-type-tag-small[data-type*="Famous"],
+.building-type-tag-small[data-type*="知名景點"] {
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+}
+
+.building-type-tag-small[data-type*="Night Market"],
+.building-type-tag-small[data-type*="夜市"] {
+    background: linear-gradient(135deg, #20c997 0%, #1e7e34 100%);
+}
+
+.building-type-tag-small[data-type*="Temple"],
+.building-type-tag-small[data-type*="寺廟"] {
+    background: linear-gradient(135deg, #ffc107 0%, #e0a800 100%);
+    color: #333;
+}
+
+.building-type-tag-small[data-type*="Park"],
+.building-type-tag-small[data-type*="公園"] {
+    background: linear-gradient(135deg, #28a745 0%, #1e7e34 100%);
+}
+
+.building-type-tag-small[data-type*="Museum"],
+.building-type-tag-small[data-type*="博物館"] {
+    background: linear-gradient(135deg, #6f42c1 0%, #5a32a3 100%);
+}
+
+.building-type-tag-small[data-type*="Station"],
+.building-type-tag-small[data-type*="車站"] {
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+}
+
+.building-type-tag-small[data-type*="School"],
+.building-type-tag-small[data-type*="學校"] {
+    background: linear-gradient(135deg, #fd7e14 0%, #e55a00 100%);
+}
+
+.building-type-tag-small[data-type*="Food"],
+.building-type-tag-small[data-type*="美食"],
+.building-type-tag-small[data-type*="食物"] {
+    background: linear-gradient(135deg, #20c997 0%, #17a2b8 100%);
+}
+
+.landmark-image-container {
+    flex: 0 0 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 550px;
+}
+
+.landmark-image {
+    width: 100%;
+    max-width: 550px;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+.landmark-image:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.attraction-detail {
+    flex: 1;
+    text-align: center;
+    /* 文字內容居中 */
+    width: 100%;
+    /* 使用全寬 */
+    order: 2;
+    /* 確保文字在下方 */
+    min-width: 0;
+}
+
+.attraction-detail .label {
+    font-weight: bold;
+    color: #689fb5;
+    margin-right: 5px;
+}
+
+.address-link {
+    color: #689fb5;
+    cursor: pointer;
+    text-decoration: underline;
+    transition: all 0.3s ease;
+}
+
+.address-link:hover {
+    color: #355074;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+/* 無資料項目樣式 */
+.no-data-item {
+    margin-bottom: 15px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.no-data-item .nearby-header {
+    background: transparent;
+    padding: 20px;
+    text-align: center;
+    cursor: default;
+}
+
+.no-data-item .nearby-header:hover {
+    background: transparent;
+}
+
+.no-data-item .nearby-header h4 {
+    color: #6c757d;
+    font-weight: normal;
+    margin: 0;
+    font-size: 16px;
+    font-style: italic;
+}
+
+/* 返回按鈕樣式 */
+#backToMapBtn {
+    background: linear-gradient(135deg, #689fb5 0%, #355074 100%);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(104, 159, 181, 0.3);
+    margin: 20px auto 0 auto;
+    display: block;
+}
+
+#backToMapBtn:hover {
+    background: linear-gradient(135deg, #355074 0%, #2c3e50 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(104, 159, 181, 0.4);
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    .landmark-container {
+        max-width: 95% !important;
+        margin: 20px auto !important;
+        padding: 20px !important;
+    }
+
+    .landmark-content {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+
+    .landmark-image-container {
+        flex: none;
+        width: 100%;
+    }
+
+    .landmark-image {
+        max-width: 100%;
+        height: 200px;
+    }
+
+    .nearby-header h4 {
+        font-size: 16px;
+    }
+
+    .landmark-section {
+        padding: 20px 15px;
+    }
+
+    .landmark-header {
+        margin: -20px -20px 20px -20px;
+        padding: 18px;
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 480px) {
+    .landmark-container {
+        max-width: 98% !important;
+        margin: 15px auto !important;
+        padding: 15px !important;
+    }
+
+    .landmark-header {
+        margin: -15px -15px 15px -15px;
+        padding: 15px;
+        font-size: 20px;
+    }
+
+    .nearby-place {
+        margin-bottom: 12px;
+    }
+
+    .nearby-header {
+        padding: 10px 12px;
+    }
+
+    .nearby-header h4 {
+        font-size: 14px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+
+    .nearby-place.active .nearby-content {
+        padding: 12px;
+    }
+
+    .landmark-image {
+        height: 150px;
+    }
+
+    .attraction-detail p {
+        font-size: 13px;
+    }
+
+    .landmark-section h3 {
+        font-size: 18px;
+    }
+}
+
+
+.upload-button-container {
+    position: relative;
+    display: inline-block;
+}
+
+/* 上傳主按鈕樣式 */
+.upload-main-btn .upload-arrow {
+    font-size: 12px !important;
+    transition: transform 0.3s ease !important;
+    display: inline-block !important;
+    margin-left: 5px !important;
+    color: inherit !important;
+}
+
+.upload-main-btn.active .upload-arrow {
+    transform: rotate(180deg) !important;
+}
+
+/* 確保按鈕內容正確排列 */
+.upload-main-btn {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+}
+
+.upload-main-btn span {
+    display: inline-block !important;
+}
+
+/* 確保上傳選項正確顯示 */
+.upload-options {
+    position: absolute !important;
+    top: 100% !important;
+    left: 50% !important;
+    transform: translateX(-50%) translateY(-10px) !important;
+    /* 修正：添加初始的 Y 偏移 */
+    background: white !important;
+    border: 1px solid #ddd !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+    z-index: 1000 !important;
+    min-width: 160px !important;
+    overflow: hidden !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transition: all 0.3s ease !important;
+    margin-top: 8px !important;
+    pointer-events: none !important;
+    /* 修正：初始狀態不接收點擊事件 */
+}
+
+.upload-options.show {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateX(-50%) translateY(0) !important;
+    pointer-events: auto !important;
+    /* 修正：顯示時才接收點擊事件 */
+}
+
+.upload-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.upload-option:last-child {
+    border-bottom: none;
+}
+
+.upload-option:hover {
+    background-color: #f8f9fa;
+}
+
+.upload-option:active {
+    background-color: #e9ecef;
+    transform: scale(0.98);
+}
+
+.upload-icon {
+    font-size: 18px;
+    width: 24px;
+    text-align: center;
+}
+
+.upload-option span:last-child {
+    font-size: 14px;
+    color: #333;
+    font-weight: 500;
+}
+
+/* 響應式調整 */
+@media (max-width: 768px) {
+    .upload-options {
+        min-width: 140px;
+    }
+
+    .upload-option {
+        padding: 10px 14px;
+    }
+
+    .upload-icon {
+        font-size: 16px;
+        width: 20px;
+    }
+
+    .upload-option span:last-child {
+        font-size: 13px;
+    }
+}

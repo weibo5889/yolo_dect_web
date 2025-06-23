@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Translation Interface</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header id="header">影像辨識玩台北</header>
+
+    <div class="nav-bar">
+        <div class="button" id="recognitionBtn" onclick="goToPage('recognitionScreen')">辨識</div>
+        <div class="button" id="mapBtn" onclick="window.location.href = 'map.html'">地圖</div>
+        <!-- 語言按鈕容器 -->
+        <div class="language-container">
+            <div class="button" id="languageBtn">語言</div>
+            <div id="languageDropdown" class="dropdown-menu">
+                <div class="lang-option" data-lang="zh">中文</div>
+                <div class="lang-option" data-lang="en">English</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 辨識頁面 -->
+    <div class="container_front" id="recognitionScreen">
+        <form id="languageForm">
+            <div class="action-buttons">
+                <!-- 隱藏的輸入元素 -->
+                <input type="file" id="fileInput" accept="image/*" onchange="previewPhoto(event)"
+                    style="display: none;">
+                <input type="file" id="cameraInput" accept="image/*" capture="environment"
+                    onchange="previewPhoto(event)" style="display: none;">
+
+                <!-- 上傳按鈕容器 -->
+                <div class="upload-button-container">
+                    <button type="button" class="button upload-main-btn" id="uploadBtn"
+                        onclick="toggleUploadOptions(event)">
+                        <span id="uploadBtnText">上傳照片</span>
+
+                    </button>
+
+                    <!-- 選項選單 -->
+                    <div class="upload-options" id="uploadOptions">
+                        <div class="upload-option" onclick="selectCamera(event)">
+                            <span class="upload-icon">📷</span>
+                            <span id="cameraOptionText">拍照</span>
+                        </div>
+                        <div class="upload-option" onclick="selectFile(event)">
+                            <span class="upload-icon">📁</span>
+                            <span id="fileOptionText">選擇檔案</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <div class="photo-preview-container hidden" id="previewContainer">
+            <img id="photoPreview" alt="Preview">
+            <div class="photo-overlay">
+                <span id="uploadPrompt">請上傳圖片</span>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <button type="button" class="button" id="detectBtn" onclick="detect()">辨識圖片</button>
+        </div>
+    </div>
+
+    <!-- 地標詳情頁面 -->
+    <div class="container full-width hidden" id="landmarkScreen">
+        <div class="landmark-container">
+            <!-- 動態生成內容 -->
+        </div>
+    </div>
+
+    <!-- 地圖頁面 -->
+    <div class="container hidden" id="pointsScreen">
+        <h2 id="pointsTitle">地圖</h2>
+        <button class="button" onclick="goToPage('recognitionScreen')">返回辨識頁面</button>
+    </div>
+
+    <!-- 載入動畫 -->
+    <div class="loader-container" id="loaderContainer">
+        <div class="loader"></div>
+    </div>
+
+    <!-- 捲動按鈕 -->
+    <div class="fixed-scroll-buttons">
+        <button class="scroll-btn scroll-up" onclick="scrollToTop()">↑</button>
+        <button class="scroll-btn scroll-down" onclick="scrollToBottom()">↓</button>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+
+</html>
