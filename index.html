@@ -12,11 +12,11 @@
     <header id="header">影像辨識玩台北</header>
 
     <div class="nav-bar">
-        <div class="button" id="recognitionBtn" onclick="goToPage('recognitionScreen')">辨識</div>
-        <div class="button" id="mapBtn" onclick="window.location.href = 'map.html'">地圖</div>
+        <button class="button" id="recognitionBtn" onclick="goToPage('recognitionScreen')">辨識</button>
+        <button class="button" id="mapBtn" onclick="window.location.href = 'map.html'">地圖</button>
         <!-- 語言按鈕容器 -->
         <div class="language-container">
-            <div class="button" id="languageBtn">語言</div>
+            <button class="button" id="languageBtn">語言</button>
             <div id="languageDropdown" class="dropdown-menu">
                 <div class="lang-option" data-lang="zh">中文</div>
                 <div class="lang-option" data-lang="en">English</div>
@@ -39,7 +39,6 @@
                     <button type="button" class="button upload-main-btn" id="uploadBtn"
                         onclick="toggleUploadOptions(event)">
                         <span id="uploadBtnText">上傳照片</span>
-
                     </button>
 
                     <!-- 選項選單 -->
@@ -79,7 +78,7 @@
     <!-- 地圖頁面 -->
     <div class="container hidden" id="pointsScreen">
         <h2 id="pointsTitle">地圖</h2>
-        <button class="button" onclick="goToPage('recognitionScreen')">返回辨識頁面</button>
+        <button class="button" onclick="goToPage('recognitionScreen')">辨識頁面</button>
     </div>
 
     <!-- 載入動畫 -->

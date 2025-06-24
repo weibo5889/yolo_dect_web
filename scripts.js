@@ -15,7 +15,7 @@ const translations = {
         selectFile: "選擇檔案",
         uploadPrompt: "請上傳圖片",
         pointsTitle: "地圖",
-        backButton: "返回辨識頁面",
+        backButton: "辨識頁面",
         detect: "辨識圖片",
         descTitle: "介紹",
         nearbyTitle: "附近地點",
@@ -1527,3 +1527,13 @@ function filterByMultipleTypes() {
     console.log('- 隱藏的地標數:', hiddenLandmarkCount);
     console.log('================');
 }
+
+// 添加點擊外部隱藏上傳選項的功能
+document.addEventListener('click', function (e) {
+    const uploadContainer = document.querySelector('.upload-button-container');
+    const uploadOptions = document.getElementById('uploadOptions');
+
+    if (uploadContainer && uploadOptions && !uploadContainer.contains(e.target)) {
+        hideUploadOptions();
+    }
+});
