@@ -1,4 +1,5 @@
-const API_BASE_URL = 'https://yolo-dect.onrender.com';
+// const API_BASE_URL = 'https://yolo-dect.onrender.com';
+const API_BASE_URL = 'https://driving-emerging-rhino.ngrok-free.app';
 
 // 全域變數設定
 let currentLanguage = 'zh'; // 預設為中文
@@ -447,19 +448,12 @@ async function fetchDistrictAttractions(district) {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
+                'ngrok-skip-browser-warning': 'true'
             }
         });
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
         const data = await response.json();
-        console.log("API 回傳資料:", data);
+        console.log("API 回傳文字：", data);
 
-        if (data.error) {
-            throw new Error(data.error);
-        }
 
         // 更新區域標題為"地標"而不是"景點"
         const translatedDistrict = getText('districts', district);

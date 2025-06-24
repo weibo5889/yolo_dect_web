@@ -436,7 +436,7 @@ function detect(e) {
     loaderContainer.classList.add('active');
 
     console.log('準備送出 fetch');
-    fetch('https://yolo-dect.onrender.com/detect', {
+    fetch('https://driving-emerging-rhino.ngrok-free.app/detect', {
         method: 'POST',
         body: formData
     })
