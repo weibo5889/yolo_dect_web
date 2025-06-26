@@ -76,10 +76,8 @@ const languages = {
 let languageBtn;
 let languageDropdown;
 function showDropdown() {
-    const rect = languageBtn.getBoundingClientRect();
+    // 只顯示選單，不再動態設定 left/top，讓 CSS 控制定位
     languageDropdown.style.display = 'block';
-    languageDropdown.style.left = rect.left + 'px';
-    languageDropdown.style.top = (rect.bottom + window.scrollY) + 'px';
 }
 function hideDropdownDelayed() {
     window._langDropdownTimer = setTimeout(() => {

@@ -125,6 +125,29 @@
             margin: 0;
             font-size: 16px;
         }
+
+        /* 修正語言下拉選單置中於語言按鈕下方 */
+        .language-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        #languageDropdown,
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-top: 2px;
+            min-width: 120px;
+            z-index: 1000;
+            display: none;
+        }
+
+        #languageDropdown.show,
+        .dropdown-menu.show {
+            display: block;
+        }
     </style>
 </head>
 
