@@ -1293,8 +1293,42 @@ header {
     }
 }
 
+/* 字體大小切換樣式 for 地標詳情 */
+.font-size-switcher {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-bottom: 8px;
+}
 
+.font-size-btn {
+    padding: 4px 12px;
+    border: none;
+    border-radius: 8px;
+    background: #e9ecef;
+    color: #355074;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
 
+.font-size-btn.active {
+    background: #355074;
+    color: #fff;
+    font-weight: bold;
+}
+
+.landmark-description.font-large p {
+    font-size: 22px !important;
+}
+
+.landmark-description.font-medium p {
+    font-size: 16px !important;
+}
+
+.landmark-description.font-small p {
+    font-size: 12px !important;
+}
 
 .landmark-header {
     background: linear-gradient(135deg, #689fb5 0%, #355074 100%);

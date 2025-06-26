@@ -320,11 +320,15 @@ function updateLandmarkContent(data) {
             <p class="landmark-hero-name-en">${landmarkNameEn}</p>
         </div>
     </div>
-    
     <div class="landmark-details-section">
         <div class="landmark-section">
             <h3 id="descTitle">${t.descTitle}</h3>
-            <div class="landmark-description">
+            <div class="font-size-switcher">
+                <button type="button" class="font-size-btn" data-size="small">小</button>
+                <button type="button" class="font-size-btn active" data-size="medium">中</button>
+                <button type="button" class="font-size-btn" data-size="large">大</button>
+            </div>
+            <div class="landmark-description font-medium">
                 <p id="landmarkDesc">${landmarkDesc}</p>
             </div>
         </div>
@@ -388,6 +392,26 @@ function updateLandmarkContent(data) {
     updateNearbyPlaces(data);
     initializeDistanceFilter();
     initializeTypeSelector(data);
+
+    // 字體大小切換功能 for 地標詳情
+    function setupLandmarkFontSizeSwitcher() {
+        const switcher = document.querySelector('.landmark-details-section .font-size-switcher');
+        const desc = document.querySelector('.landmark-details-section .landmark-description');
+        if (!switcher || !desc) return;
+        const btns = switcher.querySelectorAll('.font-size-btn');
+        btns.forEach(btn => {
+            btn.addEventListener('click', function () {
+                btns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                desc.classList.remove('font-large', 'font-medium', 'font-small');
+                if (btn.dataset.size === 'large') desc.classList.add('font-large');
+                else if (btn.dataset.size === 'small') desc.classList.add('font-small');
+                else desc.classList.add('font-medium');
+            });
+        });
+    }
+
+    setupLandmarkFontSizeSwitcher();
 }
 
 
@@ -1535,5 +1559,42 @@ document.addEventListener('click', function (e) {
 
     if (uploadContainer && uploadOptions && !uploadContainer.contains(e.target)) {
         hideUploadOptions();
+    }
+});
+
+// 新增字體大小切換功能
+document.addEventListener('click', function (e) {
+    const target = e.target;
+    const fontSizeSwitcher = document.querySelector('.font-size-switcher');
+    const landmarkDesc = document.getElementById('landmarkDesc');
+
+    if (fontSizeSwitcher && landmarkDesc) {
+        // 點擊字體大小按鈕
+        if (target.classList.contains('font-size-btn')) {
+            const selectedSize = target.getAttribute('data-size');
+
+            // 移除其他按鈕的選中狀態
+            const otherButtons = fontSizeSwitcher.querySelectorAll('.font-size-btn');
+            otherButtons.forEach(btn => {
+                if (btn !== target) {
+                    btn.classList.remove('active');
+                }
+            });
+
+            // 設定選中狀態
+            target.classList.add('active');
+
+            // 根據選擇的字體大小調整描述文字
+            if (selectedSize === 'small') {
+                landmarkDesc.classList.remove('font-medium', 'font-large');
+                landmarkDesc.classList.add('font-small');
+            } else if (selectedSize === 'medium') {
+                landmarkDesc.classList.remove('font-small', 'font-large');
+                landmarkDesc.classList.add('font-medium');
+            } else if (selectedSize === 'large') {
+                landmarkDesc.classList.remove('font-small', 'font-medium');
+                landmarkDesc.classList.add('font-large');
+            }
+        }
     }
 });

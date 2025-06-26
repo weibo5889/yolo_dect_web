@@ -387,7 +387,12 @@ function displayAttractions(places) {
                                      onerror="this.onerror=null; this.src='img_file/placeholder.jpg'; console.log('圖片載入失敗:', '${placeImage}');"
                                      onload="console.log('圖片載入成功:', '${placeImage}');">
                             </div>
-                            <div class="attraction-detail">
+                            <div class="font-size-switcher">
+                                <button type="button" class="font-size-btn" data-size="small">小</button>
+                                <button type="button" class="font-size-btn active" data-size="medium">中</button>
+                                <button type="button" class="font-size-btn" data-size="large">大</button>
+                            </div>
+                            <div class="attraction-detail font-medium">
                                 <p><span class="label">${getText('address')}</span> 
                                     <span class="address-link" onclick="openGoogleMaps('https://maps.google.com/?q=${encodeURIComponent(placeAddress)}')">${placeAddress}</span>
                                 </p>
@@ -422,18 +427,30 @@ function displayAttractions(places) {
     const districtAttractionsElement = document.getElementById('districtAttractions');
     if (districtAttractionsElement) {
         districtAttractionsElement.innerHTML = attractionsHTML;
+        setupFontSizeSwitcher();
     } else {
-        console.error('找不到 districtAttractions 元素');
+        console.warn('找不到 districtAttractions 元素');
     }
 }
 
-
-window.toggleNearbyPlace = function (index) {
-    const element = document.getElementById(`attraction-${index}`);
-    if (element) {
-        element.classList.toggle('active');
-    }
-};
+// 字體大小切換功能
+function setupFontSizeSwitcher() {
+    document.querySelectorAll('.font-size-switcher').forEach(switcher => {
+        const btns = switcher.querySelectorAll('.font-size-btn');
+        const detail = switcher.nextElementSibling;
+        if (!detail || !detail.classList.contains('attraction-detail')) return;
+        btns.forEach(btn => {
+            btn.addEventListener('click', function () {
+                btns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                detail.classList.remove('font-large', 'font-medium', 'font-small');
+                if (btn.dataset.size === 'large') detail.classList.add('font-large');
+                else if (btn.dataset.size === 'small') detail.classList.add('font-small');
+                else detail.classList.add('font-medium');
+            });
+        });
+    });
+}
 
 // 獲取區域景點資料
 async function fetchDistrictAttractions(district) {
